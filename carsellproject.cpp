@@ -1,9 +1,20 @@
+/*
+						   E Car Sell project
+						   Functionalities
+						    1. Add a car
+						    2. List all cars
+						    3. Search cars by make
+						    4. Sort cars by price
+						    6. Save cars to file
+						    7. Load cars from file
+*/
+//Header file
 #include <iostream>
-#include <fstream>
+#include <fstream> // STL for file handling
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <sstream>
+#include <sstream>  //STL for sstream
 using namespace std;
 class Car {
 	private:
@@ -26,7 +37,7 @@ class Car {
     int getYear() const { return year_; }
     double getPrice() const { return price_; }
     int getMileage() const { return mileage_; }
-
+// Dispay the car details 
     void displayDetails() const {
         cout << "Make: " << make_ << endl;
         cout << "Model: " << model_ << endl;
@@ -86,8 +97,8 @@ public:
     Car newCar(make, model, year, price, mileage);
     cars.push_back(newCar);
     numOfCars++;
-    std::cout << "Car added successfully!" << std::endl;
-        //cars.push_back(car);
+    cout << "Car added successfully!" << endl;
+        
     }
 void removeCar(int index) 
 {
@@ -98,7 +109,7 @@ void removeCar(int index)
 }
     
 void saveCarsToFile(const string& filename) {
-    fstream file;//(filename);
+    fstream file;
 
     if (!file) {
         cerr << "Error opening file: " << filename << endl;
@@ -106,7 +117,7 @@ void saveCarsToFile(const string& filename) {
     }
     if(savedCars<numOfCars)
 	{
-		file.open(filename, std::ios::app);
+		file.open(filename, ios::app);
     	cout<<"start adding"<<endl;
 	    for(int i=savedCars;i<numOfCars;i++)
 		{
@@ -123,11 +134,11 @@ void saveCarsToFile(const string& filename) {
 }
 
 
-void loadCarsFromFile(const std::string& filename) {
+void loadCarsFromFile(const string& filename) {
     ifstream file(filename);
 
     if (!file) {
-        std::cerr << "Error opening file: " << filename << std::endl;
+        cerr << "Error opening file: " << filename <<endl;
         return;
     }
 
@@ -156,20 +167,20 @@ void loadCarsFromFile(const std::string& filename) {
 }
 // Search for a car by make
 void searchCarByMake(const std::string& make) {
-    std::cout << "Searching for cars with make: " << make << std::endl;
+    cout << "Searching for cars with make: " << make << std::endl;
 
     bool found = false;
 
     for (const auto& car : cars) {
         if (car.getMake() == make) {
             car.displayDetails();
-            std::cout << "------------------------" << std::endl;
+            cout << "------------------------" << std::endl;
             found = true;
         }
     }
 
     if (!found) {
-        std::cout << "No cars with make '" << make << "' found." << std::endl;
+        cout << "No cars with make '" << make << "' found." << std::endl;
     }
 }
 
@@ -185,11 +196,11 @@ bool compareCarByPriceDesc(const Car& car1, const Car& car2) {
 
 // List all cars
 void listCars() {
-    std::cout << "Listing all cars:" << std::endl;
+    cout << "Listing all cars:" << endl;
 
     for (const auto& car : cars) {
         car.displayDetails();
-        std::cout << "------------------------" << std::endl;
+        cout << "------------------------" <<endl;
     }
 }
 
@@ -199,44 +210,21 @@ int main()
 	 int choice;
 
     while (true) {
-        cout << "Car Selling System" << std::endl;
-       cout << "1. Add a car" << std::endl;
-        cout << "2. List all cars" << std::endl;
-        cout << "3. Search cars by make" << std::endl;
-       cout << "4. Sort cars by price (ascending)" << std::endl;
-        cout << "5. Sort cars by price (descending)" << std::endl;
-        cout << "6. Save cars to file" << std::endl;
-        cout << "7. Load cars from file" << std::endl;
-        cout << "8. Exit" << std::endl;
+        cout << "Car Selling System" << endl;
+        cout << "1. Add a car" << endl;
+        cout << "2. List all cars" << endl;
+        cout << "3. Search cars by make" << endl;
+        cout << "4. Sort cars by price (ascending)" << endl;
+        cout << "5. Sort cars by price (descending)" << endl;
+        cout << "6. Save cars to file" << endl;
+        cout << "7. Load cars from file" << endl;
+        cout << "8. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {
             case 1: {
             	addCar();
-//                std::string make, model;
-//                int year, mileage;
-//                double price;
-//
-//                std::cout << "Enter car make: ";
-//                std::cin >> make;
-//
-//                std::cout << "Enter car model: ";
-//                std::cin >> model;
-//
-//                std::cout << "Enter car year: ";
-//                std::cin >> year;
-//
-//                std::cout << "Enter car price: ";
-//                std::cin >> price;
-//
-//                std::cout << "Enter car mileage: ";
-//                std::cin >> mileage;
-//
-//                Car newCar(make, model, year, price, mileage);
-//                cars.push_back(newCar);
-//                numOfCars++;
-//                std::cout << "Car added successfully!" << std::endl;
                 break;
             }
             case 2:
@@ -251,11 +239,11 @@ int main()
             }
             case 4:
                 sort(cars.begin(), cars.end(), compareCarByPriceAsc);
-                cout << "Cars sorted by price (ascending)!" << std::endl;
+                cout << "Cars sorted by price (ascending)!" <<endl;
                 break;
             case 5:
                 sort(cars.begin(), cars.end(), compareCarByPriceDesc);
-                cout << "Cars sorted by price (descending)!" << std::endl;
+                cout << "Cars sorted by price (descending)!" <<endl;
                 break;
             case 6: {
                 string filename;
@@ -272,10 +260,10 @@ int main()
                 break;
             }
             case 8:
-                cout << "Exiting..." << std::endl;
+                cout << "Exiting..." <<endl;
                 return 0;
             default:
-               cout << "Invalid choice. Please try again." << std::endl;
+               cout << "Invalid choice. Please try again." <<endl;
                 break;
         }
     }

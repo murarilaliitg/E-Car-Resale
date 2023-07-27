@@ -199,17 +199,17 @@ int main()
 	 int choice;
 
     while (true) {
-        std::cout << "Car Selling System" << std::endl;
-        std::cout << "1. Add a car" << std::endl;
-        std::cout << "2. List all cars" << std::endl;
-        std::cout << "3. Search cars by make" << std::endl;
-        std::cout << "4. Sort cars by price (ascending)" << std::endl;
-        std::cout << "5. Sort cars by price (descending)" << std::endl;
-        std::cout << "6. Save cars to file" << std::endl;
-        std::cout << "7. Load cars from file" << std::endl;
-        std::cout << "8. Exit" << std::endl;
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        cout << "Car Selling System" << std::endl;
+       cout << "1. Add a car" << std::endl;
+        cout << "2. List all cars" << std::endl;
+        cout << "3. Search cars by make" << std::endl;
+       cout << "4. Sort cars by price (ascending)" << std::endl;
+        cout << "5. Sort cars by price (descending)" << std::endl;
+        cout << "6. Save cars to file" << std::endl;
+        cout << "7. Load cars from file" << std::endl;
+        cout << "8. Exit" << std::endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
 
         switch (choice) {
             case 1: {
@@ -243,39 +243,39 @@ int main()
                 listCars();
                 break;
             case 3: {
-                std::string make;
-                std::cout << "Enter car make to search: ";
-                std::cin >> make;
+               string make;
+                cout << "Enter car make to search: ";
+               cin >> make;
                 searchCarByMake(make);
                 break;
             }
             case 4:
-                std::sort(cars.begin(), cars.end(), compareCarByPriceAsc);
-                std::cout << "Cars sorted by price (ascending)!" << std::endl;
+                sort(cars.begin(), cars.end(), compareCarByPriceAsc);
+                cout << "Cars sorted by price (ascending)!" << std::endl;
                 break;
             case 5:
-                std::sort(cars.begin(), cars.end(), compareCarByPriceDesc);
-                std::cout << "Cars sorted by price (descending)!" << std::endl;
+                sort(cars.begin(), cars.end(), compareCarByPriceDesc);
+                cout << "Cars sorted by price (descending)!" << std::endl;
                 break;
             case 6: {
-                std::string filename;
-                std::cout << "Enter filename to save cars: ";
-                std::cin >> filename;
+                string filename;
+                cout << "Enter filename to save cars: ";
+                cin >> filename;
                 saveCarsToFile(filename);
                 break;
             }
             case 7: {
-                std::string filename;
-                std::cout << "Enter filename to load cars: ";
-                std::cin >> filename;
+                string filename;
+                cout << "Enter filename to load cars: ";
+                cin >> filename;
                 loadCarsFromFile(filename);
                 break;
             }
             case 8:
-                std::cout << "Exiting..." << std::endl;
+                cout << "Exiting..." << std::endl;
                 return 0;
             default:
-                std::cout << "Invalid choice. Please try again." << std::endl;
+               cout << "Invalid choice. Please try again." << std::endl;
                 break;
         }
     }
